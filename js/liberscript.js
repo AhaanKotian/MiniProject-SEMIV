@@ -5,6 +5,7 @@ const emailInput = document.getElementById('email_field');
 const passInput = document.getElementById('password_field');
 const emailErrorDisp = document.querySelector(".errorDispEmail");
 const passErrorDisp = document.querySelector(".errorDispPass");
+const closeButton = document.querySelector(".closex");
 
 const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -12,9 +13,11 @@ loginButton.addEventListener('click',(e) => {
     siginmodal.showModal();
 })
 
-/*signinButton.addEventListener('.click',()=>{
+closeButton.addEventListener('click',(e)=>{
+    e.preventDefault();
+    console.log(e);
     siginmodal.close();
-})*/
+})
 
 signinButton.addEventListener('click',errorDisp);
 
@@ -34,5 +37,9 @@ function errorDisp(e){
     }
     else{
         passErrorDisp.innerHTML = '';
+    }
+
+    if(emailInput.value.match(mailformat) && passInput.value!=''){
+        siginmodal.close();
     }
 }
