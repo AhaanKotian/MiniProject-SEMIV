@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Map</title>
+    <link rel="stylesheet" type="text/css" href="../css/ridenow.css">
+  </head>
+  <body>
+    <h1>My Map</h1>
+    <form class="address-form">
+      <label>Pick-up location:</label><br>
+      <input class="pu-text" placeholder="Enter pick-up location"><br><br>
+      <input class="submit-btn" type="submit" value="Submit">
+    </form>
+    <div class="map"></div>
+
+    <script src="../js/ridenow.js"></script>
+
+    <!-- Google maps and marker -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOixmPLBhxBQt_X-ZvU2NIbYnNyBAcv4o&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cAB" async defer></script>
+  </body>
+</html>
