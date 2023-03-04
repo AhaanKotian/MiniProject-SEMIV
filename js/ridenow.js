@@ -1,5 +1,6 @@
 const form = document.querySelector('.address-form');
 let map;
+let counter=0;
 
 function initMap(){
   autofill();
@@ -16,8 +17,13 @@ function initMap(){
 
   form.addEventListener('submit', (e)=>{
     e.preventDefault();
+    if(counter>0){
+        marker.setMap(null);
+        counter =0;
+    }
     query = document.querySelector('.pu-text').value;
     findOnMap(map,query);
+    counter++;
   })
 
 }
