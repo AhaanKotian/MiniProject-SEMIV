@@ -1,6 +1,6 @@
 const form = document.querySelector('.address-form');
 let map;
-let counter=0;
+let markers = [];
 
 function initMap(){
   autofill();
@@ -17,13 +17,8 @@ function initMap(){
 
   form.addEventListener('submit', (e)=>{
     e.preventDefault();
-    if(counter>0){
-        marker.setMap(null);
-        counter =0;
-    }
     query = document.querySelector('.pu-text').value;
     findOnMap(map,query);
-    counter++;
   })
 
 }
@@ -70,15 +65,23 @@ function findOnMap(map, query){
 }
 
 function createMarker(place) {
+  deleteMarkers();
   if (!place.geometry || !place.geometry.location) return;
 
   const marker = new google.maps.Marker({
     map,
     position: place.geometry.location,
   });
+  markers.push(marker);
 
   // google.maps.event.addListener(marker, "click", () => {
   //   infowindow.setContent(place.name || "");
   //   infowindow.open(map);
   // });
+}
+
+function deleteMarkers() {
+    if(markers[0])
+        markers[0].setMap(null);
+    markers = [];
 }
