@@ -1,9 +1,11 @@
 const form = document.querySelector('.address-form');
 let map;
 let markers = [];
+let directionRenderers = [];
+const center = { lat: 19.0760, lng: 72.877 };
 
 function initMap(){
-  autofill();
+  let autocomplete = autofill();
 
   let query;
   var options = {
@@ -15,19 +17,21 @@ function initMap(){
   };
   map = new google.maps.Map(document.querySelector('.map'), options);
 
-  form.addEventListener('submit', (e)=>{
-    e.preventDefault();
-    query = document.querySelector('.pu-text').value;
-    findOnMap(map,query);
-  })
+  autocomplete.addListener('place_changed', ()=>{
+      query = document.querySelector('.pu-text').value;
+      findOnMap(map,query);
+    });
+
+  form.addEventListener('submit', (e)=> 
+    {
+      e.preventDefault();
+      return direction(map)
+    });
 
 }
 
 //autofill and search places
 function autofill(){
-
-  const center = { lat: 19.0760, lng: 72.877 };
-
   // Create a bounding box with sides ~20km away from the center point
   const defaultBounds = {
     south: center.lat - 0.2,
@@ -36,14 +40,18 @@ function autofill(){
     west: center.lng - 0.2,
   };
 
-  const input = document.querySelector(".pu-text");
+  const input1 = document.querySelector(".pu-text");
+  const input2 = document.querySelector(".d-text");
   const options = {
     bounds: defaultBounds,
     componentRestrictions: { country: "in" },
     fields: ["address_components", "geometry", "icon", "name"],
     strictBounds: false,
   };
-  const autocomplete = new google.maps.places.Autocomplete(input, options);
+  const autocomplete1 = new google.maps.places.Autocomplete(input1, options);
+  const autocomplete2 = new google.maps.places.Autocomplete(input2, options);
+
+  return autocomplete1;
 }
 
 function findOnMap(map, query){
@@ -51,6 +59,7 @@ function findOnMap(map, query){
     query: query,
     fields: ['name', 'geometry'],
   };
+  console.log(query);
 
   var service = new google.maps.places.PlacesService(map);
 
@@ -84,4 +93,32 @@ function deleteMarkers() {
     if(markers[0])
         markers[0].setMap(null);
     markers = [];
+}
+
+function direction(map){
+  if(directionRenderers[0]){
+    directionRenderers[0].setMap(null);
+    directionRenderers=[];
+  }
+  console.log("direction enter");
+  var directionsService = new google.maps.DirectionsService();
+  var directionsRenderer = new google.maps.DirectionsRenderer();
+  directionsRenderer.setMap(map);
+  directionRenderers.push(directionsRenderer);
+  calcRoute(directionsService, directionRenderers[0]);
+}
+
+function calcRoute(directionsService, directionsRenderer) {
+  var start = document.querySelector('.pu-text').value;
+  var end = document.querySelector('.d-text').value;
+  var request = {
+    origin: start,
+    destination: end,
+    travelMode: 'DRIVING',
+  };
+  directionsService.route(request, function(result, status) {
+    if (status == 'OK') {
+      directionsRenderer.setDirections(result);
+    }
+  });
 }
