@@ -1,11 +1,14 @@
 const siginmodal = document.querySelector( '#modal' );
+const sigupmodal = document.querySelector('#modal1');
 const loginButton = document.querySelector( '.loginbtn' ); //button on homepage
 const signinButton = document.querySelector( '.sign-in_btn' ); //button on signin modal
+const signupButton = document.querySelector('.signupbtn');
 const emailInput = document.getElementById('email_field');
 const passInput = document.getElementById('password_field');
 const emailErrorDisp = document.querySelector(".errorDispEmail");
 const passErrorDisp = document.querySelector(".errorDispPass");
 const closeButton = document.querySelector(".closex");
+const signupcloseButton = document.querySelector(".signupclosex");
 
 const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -43,3 +46,14 @@ function errorDisp(e){
         siginmodal.close();
     }
 }
+
+signupButton.addEventListener('click',(e) => {
+    siginmodal.close();
+    sigupmodal.showModal();
+})
+
+signupcloseButton.addEventListener('click',(e)=>{
+    e.preventDefault();
+    console.log(e);
+    sigupmodal.close();
+})
