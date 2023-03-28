@@ -8,6 +8,25 @@
   
 }
 
+.navlinks{
+  list-style: none;
+}
+
+.navlinks li{
+  display: inline-block;
+  padding: 0px 50px;
+}
+
+.navlinks li a{
+  text-decoration: none;
+  color: black;
+  transition: all 0s ease 0.2s;
+}
+
+.navlinks li a:hover{
+  color: #feca47;
+}
+
 body{
   overflow-y: scroll;
   overflow-x: hidden; 
@@ -21,7 +40,7 @@ body::-webkit-scrollbar {
   height: 130%;
   width: 700px;
   box-sizing: border-box;
-  border: 2px solid #feca47;
+  border: 1px solid #000000;
   border-radius: 10px;
   }
   
@@ -60,13 +79,17 @@ body::-webkit-scrollbar {
 
 .address-form{
   max-width: 450px;
+  max-height: max-content;
   width: 500%;
   background-color: #ffffff;
   padding: 20px;
-  box-shadow: 0px 0px 0px 4px #dedede;
+  border-radius: 20px;
+background: #ffffff;
+box-shadow:  6px 6px 23px #c4c4c4,
+             -6px -6px 23px #ffffff;
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
+ 
   
 }
 
@@ -74,8 +97,9 @@ body::-webkit-scrollbar {
   text-align: left;
   font-size: 25px;
   font-weight: 700;
+  padding-top: 5px;
   margin-bottom: 20px;
-  color: #1a202c;
+  color: #302c22;
 }
 
 .input {
@@ -85,29 +109,22 @@ body::-webkit-scrollbar {
   height: 50px;
   width: 100%;
   font-size: 1rem;
-  color: #4a5568;
+  color: #000000;
   outline: none;
-  border: 1px solid transparent;
+  border: 2px solid rgb(163, 163, 163);
   border-radius: 10px;
   transition: all 0.2s ease-in-out;
 }
 
 .input:focus {
   background-color: #fff;
-  box-shadow: 0 0 0 2px #cbd5e0;
-}
-
-.input:valid {
-  border: 1px solid green;
-}
-
-.input:invalid {
-  border: 1px solid rgba(14, 14, 14, 0.205);
+  border: 2px solid #feca47;
+  
 }
 
 .submit-btn {
   background: #feca47;
-  color: white;
+  color: rgb(255, 255, 255);
   font-family: 'Josefin Sans',sans-serif;
   padding: 0.35em;
   padding-left: 1.2em;
@@ -158,4 +175,3 @@ body::-webkit-scrollbar {
 .submit-btn:active .icon {
   transform: scale(0.95);
 }
-
