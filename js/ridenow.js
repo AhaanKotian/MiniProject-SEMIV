@@ -18,7 +18,7 @@ function initMap(){
   map = new google.maps.Map(document.querySelector('.map'), options);
 
   autocomplete.addListener('place_changed', ()=>{
-      query = document.querySelector('.pu-text').value;
+      query = document.querySelector('#pu-text').value;
       findOnMap(map,query);
     });
 
@@ -40,8 +40,8 @@ function autofill(){
     west: center.lng - 0.2,
   };
 
-  const input1 = document.querySelector(".pu-text");
-  const input2 = document.querySelector(".d-text");
+  const input1 = document.querySelector("#pu-text");
+  const input2 = document.querySelector("#d-text");
   const options = {
     bounds: defaultBounds,
     componentRestrictions: { country: "in" },
@@ -108,8 +108,8 @@ function direction(map){
 }
 
 function calcRoute(directionsService, directionsRenderer) {
-  var start = document.querySelector('.pu-text').value;
-  var end = document.querySelector('.d-text').value;
+  var start = document.querySelector('#pu-text').value;
+  var end = document.querySelector('#d-text').value;
   var request = {
     origin: start,
     destination: end,
