@@ -57,3 +57,20 @@ signupcloseButton.addEventListener('click',(e)=>{
     console.log(e);
     sigupmodal.close();
 })
+
+gsap.registerPlugin(ScrollTrigger);
+
+const sections = gsap.utils.toArray(".panel"),
+  container = document.querySelector(".container");
+
+gsap.to(sections, {
+  xPercent: -100 * (sections.length - 1),
+  ease: 0.5,
+  scrollTrigger: {
+    trigger: ".container",
+    pin: true,
+    scrub: 1,
+    snap: 1 / (sections.length - 1),
+    end: () => "+=" + container.offsetWidth,
+  },
+});

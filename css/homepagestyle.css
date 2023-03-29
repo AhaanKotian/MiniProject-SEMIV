@@ -6,6 +6,11 @@
     font-family: 'Josefin Sans',sans-serif;
     
 }
+/*c*/
+html{
+  height: 100%;
+}
+/*c*/
 
 body{
     overflow-y: scroll;
@@ -17,10 +22,18 @@ body::-webkit-scrollbar {
 }
 
 header{
+
+  /*c*/position: fixed;
+  z-index: 1;
+  width: 100%;
+  background: #ffffff;
+  height: 90px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 30px 5%;
+
 }
 
 .logo{
@@ -94,19 +107,18 @@ header{
     transform: translateX(0);
   }
 
-.container{
-    background-color: #ffffff;
-    max-height: 100vh;
-    width: 100%;
-    position: relative;
-}
 
-.container .home{
+
+.home{
+    /*c*/height: 100vh;
+    flex-direction: row;
+    gap: 10px;
+
     position: relative;
-    
+    background-color: white;
     width: 100%;
     padding: 170px;
-    padding-top: 0px;
+    /*c*/padding-top: 250px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -438,3 +450,102 @@ dialog{
     color: red;
   }
 
+/*ABOUT US , CONTACT , SERVICES */
+
+.container {
+  width: 200%;
+  height: 100vh;
+  display: flex;
+  flex-wrap: nowrap;
+  background: #ffffff;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  
+  
+  height: 100vh;
+  
+}
+
+.panel {
+  width: 100%;
+  height: 100%;
+}
+
+.aboutus{
+  padding-top: 20px;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 40px;
+}
+
+.container .panel:nth-child(odd) {
+  background: #ffffff;
+}
+
+h2{
+  text-align: center;
+  padding-top: 100px;
+  font-size: 30px;
+  font-weight: 400px;
+}
+
+.row{
+  padding-top: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.col{
+  flex:33.33%;
+  max-width: 33.33%;
+  padding-top: 5px;
+  padding: 5px;
+  justify-content: center;
+}
+
+h3{
+  padding-top: 20px;
+}
+
+.col p{
+  padding-top: 5px;
+}
+
+.safe,.clock,.money{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.clock img{
+  position:relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.money img{
+  position:relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-size: cover;
+}
+
+.safe img{
+  position:relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.services p{
+  text-align: center;
+  padding-top: 10%;
+}
