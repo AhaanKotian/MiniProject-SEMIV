@@ -459,7 +459,7 @@ dialog{
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
-  background: #ffffff;
+  background: #feca47;
 }
 
 section {
@@ -484,15 +484,63 @@ section {
 }
 
 .container .panel:nth-child(odd) {
-  background: #ffffff;
+  background: #fff;
 }
 
-.aboutus p{
+.heading1{
   text-align: center;
-  padding-top: 100px;
+  padding-top: 75px;
   font-size: 30px;
-  font-weight: 300px;
+  font-weight: bolder;
   text-transform: capitalize;
+}
+
+.subheading1{
+  padding-top: 20px;
+  color: #535050;
+
+}
+
+
+.radio-inputs {
+  margin-top: 20px;
+  position: relative;
+  left: 38%;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 0.5rem;
+  background-color: #feca47;
+  box-sizing: border-box;
+  box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+  padding: 0.25rem;
+  width: 300px;
+  font-size: 14px;
+}
+
+.radio-inputs .radio {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.radio-inputs .radio input {
+  display: none;
+}
+
+.radio-inputs .radio .name {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border: none;
+  padding: .5rem 0;
+  color: rgba(51, 65, 85, 1);
+  transition: all .15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked + .name {
+  background-color: #ffffff;
+  font-weight: 600;
 }
 
 .col p{
@@ -526,12 +574,26 @@ h3{
   
 }
 
-.safe,.clock,.money{
+.safe,.clock{
     position: relative;
-    width: 175px;
-    height: 175px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     overflow: hidden;
+}
+
+.phone{
+  position: relative;
+  width: 400px;
+  height: 350px;
+  overflow: hidden;
+}
+
+.phone img{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .clock img{
@@ -541,13 +603,7 @@ h3{
   object-fit: cover;
 }
 
-.money img{
-  position:relative;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  background-size: cover;
-}
+
 
 .safe img{
   position:relative;
@@ -561,107 +617,3 @@ h3{
   padding-top: 10%;
 }
 
-.testimonials_row {
-  height: 150px;
-  width: 1000px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  border-radius: 50px;
-  background: #ffffff;
-  box-shadow: inset 5px 5px 10px #d4d4d4,
-            inset -5px -5px 10px #ffffff;
-  position: absolute;
-  top: 83%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.testimonial {
-  position: relative;
-  max-width: 950px;
-  width: 100%;
-  padding: 28px ;
-  overflow: hidden;
-}
-
-
-.testimonial .slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  row-gap: 5px;
-  height: 100%;
-  width: 100%;
-}
-
-.slide p {
-  text-align: center;
-  padding: 0 160px;
-  font-size: 14px;
-  font-weight: 400;
-  color: #333;
-}
-
-.slide .quote-icon {
-  font-size: 30px;
-  color: #feca47;
-}
-
-.slide .details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.details .name {
-  font-size: 14px;
-  font-weight: 600;
-  color: #333;
-}
-
-.details .job {
-  font-size: 12px;
-  font-weight: 400;
-  color: #333;
-}
-
-/* swiper button css */
-.nav-btn {
-  height: 20px;
-  width: 20px;
-  padding-top: 0;
-  border-radius: 50%;
-  transform: translateY(8px);
-  transition: 0.2s;
-}
-
-.nav-btn:hover {
-  background-color: rgb(255, 247, 191);
-}
-
-.nav-btn::after,
-.nav-btn::before {
-  font-size: 20px;
-  color: #feca47;
-}
-
-.swiper-pagination-bullet {
-  
-  background-color: #feca47;
-}
-
-.swiper-pagination-bullet-active {
-  background-color: #feca47;
-}
-
-@media screen and (max-width: 768px) {
-  .slide p {
-    padding: 0 20px;
-  }
-  .nav-btn {
-    display: none;
-  }
-}
