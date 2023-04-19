@@ -9,7 +9,7 @@ const emailErrorDisp = document.querySelector(".errorDispEmail"); //error disp o
 const passErrorDisp = document.querySelector(".errorDispPass"); //error disp on password everywhere
 const closeButton = document.querySelector(".closex"); //sign in closex
 const signupcloseButton = document.querySelector(".signupclosex"); //sign up  closex
-const signupmain = document.querySelector(".form_container"); //sign up form
+const signupmain = document.querySelector(".sign-up_btn");
 
 
 //INPUT VALIDATION
@@ -26,11 +26,6 @@ closeButton.addEventListener('click',(e)=>{
 })
 
 signinButton.addEventListener('click',errorDispSI);
-signupmain.addEventListener('submit', clickSU);
-
-function clickSU(e){
-    e.preventDefault();
-}
 
 function errorDispSI(e){
     e.preventDefault();
@@ -59,6 +54,16 @@ signupButton.addEventListener('click',(e) => {
     siginmodal.close();
     sigupmodal.showModal();
 })
+
+if(document.getElementById('SUerror'))
+{
+  sigupmodal.showModal();
+}
+else if(document.getElementById('SUsuc'))
+{
+  siginmodal.showModal();
+  document.getElementById('SUsuc').innerHTML = "Signup Successful! Please Login";
+}
 
 signupcloseButton.addEventListener('click',(e)=>{
     e.preventDefault();

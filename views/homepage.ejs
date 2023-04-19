@@ -28,7 +28,11 @@
                 <form action="/" class="form_container" method="POST">
                     <div class="logo_container closex">&#10006;</div>
                     <div class="title_container">
-                      <p class="title">Login to your Account</p>
+
+                      <!--if signup is successful do thing-->
+                      <p class="title" <% if (typeof SUsuccess != 'undefined') { %> id ="SUsuc" <%} %>>Login to your Account</p>
+
+                      
                       <span class="subtitle">Get started with our app, just create an account and enjoy the experience.</span>
                     </div>
                     <br>
@@ -117,11 +121,14 @@
                   <br>
                   
                   <!--error message-->
-                  <ul class="error">
-                    <% if (typeof errors != 'undefined') { %> <% errors.forEach(error => { %>
+                  <ul <% if (typeof errors != 'undefined') { %> class = "error" id ="SUerror" <%} %>>
+                    <% if (typeof errors != 'undefined') { %> <% errors.forEach(error => { %> 
                     <li><%= error.message %></li>
                     <% }) %> <% } %>
                   </ul>
+
+                  <!--If successful, redirect to login-->
+                  <!-- <ul <% if (typeof SUsuccess != 'undefined') { %> id ="SUsuc" <%} %>></ul> -->
 
                   <div class="input_container">
                     <label class="input_label" for="name_field">Name</label>
@@ -236,6 +243,7 @@
             <!-- HOME PAGE -->
             <section class="home">
                 <div class="textbox">
+
                     <h1>Enjoy hassle-free <br> bookings and
                          <br> travel smoothly.</h1>
                     <p>Local | Reliable | Safe</p> 
