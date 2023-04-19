@@ -12,6 +12,7 @@ initializePassport(passport);
 
 const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
+app.use(flash());
 
 app.use(
     session({
@@ -24,7 +25,15 @@ app.use(
     })
   );
 
-app.use(passport.initialize);
-app.use(passport.session);
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use(flash());
+const form_validation = 
+    passport.authenticate("local", {
+        successRedirect: '/',
+        failureRedirect: '/',
+        failureFlash: true
+    });
+    
+
+module.exports = form_validation;

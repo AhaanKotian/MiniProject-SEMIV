@@ -28,7 +28,7 @@ closeButton.addEventListener('click',(e)=>{
 signinButton.addEventListener('click',errorDispSI);
 
 function errorDispSI(e){
-    e.preventDefault();
+    //e.preventDefault();
     if(!emailInput.value.match(mailformat)){
         emailErrorDisp.classList.add('error');
         emailErrorDisp.innerHTML = 'Please enter valid email';
@@ -47,6 +47,10 @@ function errorDispSI(e){
 
     if(emailInput.value.match(mailformat) && passInput.value!=''){
         siginmodal.close();
+    }
+    else
+    {
+      siginmodal.showModal();
     }
 }
 
