@@ -67,6 +67,7 @@ const form_validation = async (req, res, next) => {
             `SELECT * FROM riders_signup
             WHERE email = $1`, [input_email], (err, results) => {
                 if (err){
+                    console.log(err);
                     throw err;
                 }
 
@@ -83,7 +84,7 @@ const form_validation = async (req, res, next) => {
                         (err, results) => {
                             if(err){
                                 throw err;
-                            }
+                            }   
                             console.log(results.rows);
                             let SUsuccess = [];
                             SUsuccess.push({status: "success"});
