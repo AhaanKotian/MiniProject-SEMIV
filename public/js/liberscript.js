@@ -1,7 +1,7 @@
 const siginmodal = document.querySelector( '#modal' ); //signin modAL
 const sigupmodal = document.querySelector('#modal1'); //signup modal
 const loginButton = document.querySelector( '.loginbtn' ); //button on homepage
-const signinButton = document.querySelector( '.sign-in_btn' ); //button on signin modal
+const signinButton = document.querySelector( '.sign-in_btn' ); //button on signin modal 
 const signupButton = document.querySelector('.signupbtn'); //sign up button on sign in modal
 const emailInput = document.getElementById('email_field_sign_in'); //email field in sign in modal
 const passInput = document.getElementById('password_field_sign_in'); // password field in sign in modal
@@ -9,12 +9,14 @@ const emailErrorDisp = document.querySelector(".errorDispEmail"); //error disp o
 const passErrorDisp = document.querySelector(".errorDispPass"); //error disp on password everywhere
 const closeButton = document.querySelector(".closex"); //sign in closex
 const signupcloseButton = document.querySelector(".signupclosex"); //sign up  closex
-const signupmain = document.querySelector(".sign-up_btn");
+const signupmain = document.querySelector(".sign-up_btn"); //sign up button on sign up modal
 
 
 //INPUT VALIDATION
 const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
+
+//INITIAL CLICKS
 loginButton.addEventListener('click',(e) => {
     siginmodal.showModal();
 })
@@ -30,6 +32,7 @@ signinButton.addEventListener('click',errorDispSI);
 function errorDispSI(e){
     //e.preventDefault();
     if(!emailInput.value.match(mailformat)){
+        e.preventDefault();
         emailErrorDisp.classList.add('error');
         emailErrorDisp.innerHTML = 'Please enter valid email';
     }
@@ -38,6 +41,7 @@ function errorDispSI(e){
     }
 
     if(passInput.value===''){
+        e.preventDefault();
         passErrorDisp.classList.add('error');
         passErrorDisp.innerHTML = 'Please enter valid password';
     }
@@ -59,6 +63,16 @@ signupButton.addEventListener('click',(e) => {
     sigupmodal.showModal();
 })
 
+signupcloseButton.addEventListener('click',(e)=>{
+  e.preventDefault();
+  console.log(e);
+  sigupmodal.close();
+})
+//INTIAL CLICKS END
+
+
+
+//AFTER USER REGISTERS/ LOGS IN
 if(document.getElementById('SUerror'))
 {
   sigupmodal.showModal();
@@ -69,11 +83,16 @@ else if(document.getElementById('SUsuc'))
   document.getElementById('SUsuc').innerHTML = "Signup Successful! Please Login";
 }
 
-signupcloseButton.addEventListener('click',(e)=>{
-    e.preventDefault();
-    console.log(e);
-    sigupmodal.close();
-})
+if(document.getElementById('SIerror'))
+{
+  siginmodal.showModal();
+}
+
+if(document.getElementById('hlb'))
+{
+  loginButton.remove();
+}
+//AFTER USER REGISTERS/ LOGS IN END
 
 
 

@@ -13,22 +13,24 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false}));
 app.use(flash());
-
 app.use(
     session({
       // Key we want to keep secret which will encrypt all of our information
       secret: 'secret',
       // Should we resave our session variables if nothing has changes which we dont
       resave: false,
-      // Save empty value if there is no vaue which we do not want to do
+      // Save empty value if there is no value which we do not want to do
       saveUninitialized: false
     })
   );
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use('/riders/signup', require('./routes/rider_signup'));
-app.use('/riders/signin', require('./routes/rider_signin'));
 
+//routes
+app.use('/riders', require('./routes/rider_signup'));
 
+//hardcoded routes
 app.get('/', (req , res) => res.render('homepage'));
 app.get('/ridenow', (req , res) => res.render('ridenow'));
 

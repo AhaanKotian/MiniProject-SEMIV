@@ -12,7 +12,6 @@ function initialize(passport){
                     throw err;
                 }
                 
-                console.log("here");
                 console.log(results.rows);
 
                 if(results.rows.length > 0){

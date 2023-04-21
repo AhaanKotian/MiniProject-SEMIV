@@ -57,7 +57,10 @@ const form_validation = async (req, res, next) => {
 
     if(errors.length > 0)
     {
-        res.status(400).render('homepage', { errors });
+        var string = encodeURIComponent(JSON.stringify({errors}));
+        res.redirect('/riders/signup_error?valid=' + string);
+        return;
+        //res.status(400).render('homepage', { errors });
     }
     else
     {
@@ -72,7 +75,9 @@ const form_validation = async (req, res, next) => {
 
                 if(results.rows.length > 0){
                     errors.push({message: "Email already exists"});
-                    res.render("homepage", {errors});
+                    var string = encodeURIComponent(JSON.stringify({errors}));
+                    res.redirect('/riders/signup_error?valid=' + string);
+                    return;
                 }
                 else
                 {
@@ -86,10 +91,10 @@ const form_validation = async (req, res, next) => {
                             }   
                             console.log(results.rows);
                             let SUsuccess = [];
-                            SUsuccess.push({status: "success"});
                             SUsuccess.push({name: input_name});
-                            //req.flash('success_msg', "You are now registered. Please log in");
-                            res.render("homepage", {SUsuccess});
+                            var string = encodeURIComponent(JSON.stringify({SUsuccess}));
+                            res.redirect('/riders/signup_suc?valid=' + string);
+                            return;                          
                         }
                     )
                 }

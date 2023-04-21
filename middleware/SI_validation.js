@@ -28,12 +28,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-const form_validation = 
+const pass_auth = 
     passport.authenticate("local", {
-        successRedirect: '/',
-        failureRedirect: '/',
-        failureFlash: true
+        successRedirect: '/riders/signin_suc',
+        failureRedirect: '/riders/signin_error',
+        failureMessage: true
     });
     
 
-module.exports = form_validation;
+module.exports = pass_auth;

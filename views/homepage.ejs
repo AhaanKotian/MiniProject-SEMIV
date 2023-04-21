@@ -21,7 +21,15 @@
                 </ul>
             </nav>
             
-            <a href="#"><button class="loginbtn">Sign In</button></a>
+            <a href="#"><button class="loginbtn" <% if (typeof SI_suc != 'undefined') { %> id="hlb" <%} %>>
+              Sign In</button></a>
+
+
+            <!--replace sign in with sign out-->
+            <% if (typeof SI_suc != 'undefined') { %> 
+              <a href="#"><button id="logoutbtn">Sign Out</button></a>
+            <%} %>
+            
 
             <!--Modal Starts-->
             <dialog class="modal" id="modal">
@@ -36,6 +44,16 @@
                       <span class="subtitle">Get started with our app, just create an account and enjoy the experience.</span>
                     </div>
                     <br>
+
+
+                    <!--error message-->
+                    <ul <% if (typeof SI_err != 'undefined' ) {%> class = "error" id ="SIerror" <%} %>>
+                      <% if ( typeof SI_err != 'undefined') { %> <% SI_err.forEach(error => { %> 
+                      <li><%= error %></li>
+                      <% }) %> <% } %>
+                    </ul>
+
+
                     <div class="input_container">
                       <label class="input_label" for="email_field">Email</label>
                       <svg fill="none" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg" class="iconEmail">
@@ -126,8 +144,6 @@
                     <% }) %> <% } %>
                   </ul>
 
-                  <!--If successful, redirect to login-->
-                  <!-- <ul <% if (typeof SUsuccess != 'undefined') { %> id ="SUsuc" <%} %>></ul> -->
 
                   <div class="input_container">
                     <label class="input_label" for="name_field">Name</label>
