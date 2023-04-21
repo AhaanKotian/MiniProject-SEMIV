@@ -21,13 +21,13 @@
                 </ul>
             </nav>
             
-            <a href="#"><button class="loginbtn" <% if (typeof SI_suc != 'undefined') { %> id="hlb" <%} %>>
+            <a href="#"><button class="loginbtn" <% if (typeof user != 'undefined') { %> id="hlb" <%} %>>
               Sign In</button></a>
 
 
             <!--replace sign in with sign out-->
-            <% if (typeof SI_suc != 'undefined') { %> 
-              <a href="#"><button id="logoutbtn">Sign Out</button></a>
+            <% if (typeof user != 'undefined') { %> 
+              <form action="/riders/logout"><button type="submit" id="logoutbtn">Sign Out</button></form>
             <%} %>
             
 
@@ -262,7 +262,8 @@
                     <h1>Enjoy hassle-free <br> bookings and
                          <br> travel smoothly.</h1>
                     <p>Local | Reliable | Safe</p> 
-                    <button class="ridenow" onclick="window.location.href='ridenow'">
+                    <button class="ridenow" <% if(typeof user != 'undefined') { %> 
+                      onclick="window.location.href='ridenow'" <% } else { %> id="rnsi" <%}%>>
                         <span class="circle" aria-hidden="true">
                         <span class="icon arrow"></span>
                         </span>

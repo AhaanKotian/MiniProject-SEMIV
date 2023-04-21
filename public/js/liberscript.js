@@ -21,6 +21,14 @@ loginButton.addEventListener('click',(e) => {
     siginmodal.showModal();
 })
 
+if(document.getElementById('rnsi'))
+{
+  document.getElementById('rnsi').addEventListener('click',(e) => {
+    siginmodal.showModal();
+  })
+}
+
+
 closeButton.addEventListener('click',(e)=>{
     e.preventDefault();
     console.log(e);
