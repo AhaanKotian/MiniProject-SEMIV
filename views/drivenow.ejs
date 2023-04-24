@@ -1,0 +1,63 @@
+<!--If having trouble with styling due to improper tags or something like that, lmk-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Map</title>
+    <link rel="stylesheet" type="text/css" href="/css/drivenow.css">
+  </head>
+  <body>
+    <header>
+      <div class="logo">Libér</div>
+      <nav>
+                <ul class="navlinks">
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Services</a></li>
+                </ul>
+       </nav>
+    </header>
+
+    <div class="container">
+      <div class = sections>
+        <div class="leftsec">
+           <form class="address-form">
+             <a class="title">Find a Ride!</a>
+             
+             <input class="input" id="pu-text" placeholder="Pickup Location"><br><br>
+              <button class="submit-btn" type="submit">Search
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path>
+                    <path fill="currentColor" d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"></path>
+                  </svg>
+                </div>
+              </button>
+             
+             
+          </form>
+        </div>
+          
+        <div class="rightsec">
+           <div class="map"></div>
+           <div class="dispResult"></div> <!-- displays distance and time of trip. -->
+           <script src="/js/ridenow.js"></script>
+           <!-- Google maps and marker -->
+           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOixmPLBhxBQt_X-ZvU2NIbYnNyBAcv4o&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cAB" async defer></script>
+        </div>
+
+        <div class="banter-loader">
+            <div class="banter-loader__box"></div>
+            <div class="banter-loader__box"></div>
+            <div class="banter-loader__box"></div>
+            <div class="banter-loader__box"></div>
+            <div class="banter-loader__box"></div>
+            <div class="banter-loader__box"></div>
+            <div class="banter-loader__box"></div>
+            <div class="banter-loader__box"></div>
+            <div class="banter-loader__box"></div>
+          </div>
+          
+    </div> 
+    
+  </body>
+</html>
