@@ -31,7 +31,7 @@ app.use(passport.session());
 app.use('/riders', require('./routes/rider_signup'));
 
 //hardcoded routes
-app.get('/', (req , res) => res.render('homepage'));
+app.get('/', (req , res) => res.render('driverui.ejs'));
 
 app.listen(PORT, () => {
     console.log('Server running on port', PORT);
