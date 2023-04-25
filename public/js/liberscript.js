@@ -100,6 +100,11 @@ if(document.getElementById('hlb'))
 {
   loginButton.remove();
 }
+
+if(document.getElementById('hdb'))
+{
+  document.getElementById('hdb').remove();
+}
 //AFTER USER REGISTERS/ LOGS IN END
 
 

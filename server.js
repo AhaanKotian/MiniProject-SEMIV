@@ -29,9 +29,10 @@ app.use(passport.session());
 
 //routes
 app.use('/riders', require('./routes/rider_signup'));
+app.use('/drivers', require('./routes/driver') );
 
 //hardcoded routes
-app.get('/', (req , res) => res.render('drivenow.ejs'));
+app.get('/', (req , res) => res.render('homepage.ejs'));
 
 app.listen(PORT, () => {
     console.log('Server running on port', PORT);
