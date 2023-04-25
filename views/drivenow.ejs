@@ -36,27 +36,59 @@
              
           </form>
         </div>
+
+
+        <dialog class="loadermodal" id="loadermodal">
+          <div class="loader">
+           <div class="loader1">
+            <p>loading</p>
+            <div class="words">
+                <span class="word">pickup location</span>
+                <span class="word">pickup location</span>
+                <span class="word">estimate fare</span>
+                <span class="word">travel distance</span>
+                <span class="word">passenger details</span>
+                
+            </div>
+           </div>
+            <div class="loader2">
+              <div class="wrapper">
+                <div class="circle"></div>
+                <div class="line-1"></div>
+                <div class="line-2"></div>
+                <div class="line-3"></div>
+                <div class="line-4"></div>
+              </div>
+            </div>
+          </div>
+
+        </dialog>
+
+        <dialog class="riderdetails" id="riderdetails">
+          <div class="deetscontainer">
+            <div class="deetsheading">Available Rides</div>
+            <div class="rides">
+              <ul>
+                <li>Ride 1</li>
+                <li>Ride 2</li>
+                <li>Ride 3</li>
+              </ul>
+            </div>
+          </div>
+        </dialog>
+        
+       
+
           
         <div class="rightsec">
            <div class="map"></div>
            <div class="dispResult"></div> <!-- displays distance and time of trip. -->
-           <script src="/js/ridenow.js"></script>
+           <script src="/js/drivenow.js"></script>
            <!-- Google maps and marker -->
            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOixmPLBhxBQt_X-ZvU2NIbYnNyBAcv4o&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cAB" async defer></script>
         </div>
 
-        <div class="banter-loader">
-            <div class="banter-loader__box"></div>
-            <div class="banter-loader__box"></div>
-            <div class="banter-loader__box"></div>
-            <div class="banter-loader__box"></div>
-            <div class="banter-loader__box"></div>
-            <div class="banter-loader__box"></div>
-            <div class="banter-loader__box"></div>
-            <div class="banter-loader__box"></div>
-            <div class="banter-loader__box"></div>
-          </div>
-          
+      </div>
     </div> 
     
   </body>
