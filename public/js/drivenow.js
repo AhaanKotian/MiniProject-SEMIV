@@ -178,3 +178,5 @@ if(document.getElementById('rnsi'))
 
 setTimeout(function() { loadermodal.close();}, 15000);
 
+//riderdetails.showModal();
+
