@@ -5,9 +5,8 @@ const bcrypt = require("bcrypt");
 
 function initialize(passport){
     const authenticateUser = (email, password, done) => {
-        console.log("in authenticate");
         pool.query(
-            `SELECT * FROM riders_signup WHERE email = $1`, [email],
+            `SELECT * FROM drivers WHERE email = $1`, [email],
             (err, results) => {
                 if(err){
                     throw err;
@@ -41,8 +40,8 @@ function initialize(passport){
     passport.use(
         new LocalStrategy(
             {
-                usernameField : "input_email_SI",
-                passwordField: "input_pass_SI"
+                usernameField : "email",
+                passwordField: "password"
             },
             authenticateUser
         )
@@ -54,7 +53,7 @@ function initialize(passport){
 
     passport.deserializeUser((id, done) => {
         pool.query(
-            `SELECT * FROM riders_signup WHERE id =$1`, [id], (err, results) => {
+            `SELECT * FROM drivers WHERE id =$1`, [id], (err, results) => {
                 if(err){
                     throw err
                 }

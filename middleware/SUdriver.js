@@ -4,11 +4,11 @@ const express = require('express');
 const app = express();
 const flash = require("express-flash");
 const session = require("express-session");
-const passport = require("passport");
+const passport = require("passport").Passport;
+const passport2 = new passport();
+const initializePassport = require("../passportConfig2") 
 
-const initializePassport = require("../passportConfig") 
-
-initializePassport(passport);
+initializePassport(passport2);
 
 const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -16,7 +16,7 @@ const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 app.use(
     session({
       // Key we want to keep secret which will encrypt all of our information
-      secret: 'secret',
+      secret: 'secret2',
       // Should we resave our session variables if nothing has changes which we dont
       resave: false,
       // Save empty value if there is no vaue which we do not want to do
@@ -29,7 +29,7 @@ app.use(
 
 app.use(flash());
 
-
+//SIGNUP
 const form_validation = async (req, res, next) => {
     let { name, email, vno, vmodel, phone, password, password2} = req.body;
 
@@ -129,4 +129,15 @@ const form_validation = async (req, res, next) => {
 
 
 
-module.exports = {form_validation};
+//SIGNIN
+app.use(passport2.initialize());
+app.use(passport2.session());
+
+const pass_auth = 
+    passport2.authenticate("local", {
+        successRedirect: '/drivers/signin_suc',
+        failureRedirect: '/drivers/signin_error',
+        failureMessage: true
+    });
+    
+module.exports = {form_validation, pass_auth};
