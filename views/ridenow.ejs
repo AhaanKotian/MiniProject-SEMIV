@@ -21,31 +21,69 @@
     <div class="container">
       <div class = sections>
         <div class="leftsec">
-           <form class="address-form">
+           <form class="address-form" action = "ridenow/find">
              <a class="title">Get a Ride!</a>
              
              <input class="input" id="pu-text" placeholder="Pickup Location"><br><br>
 
              <input class="input" id="d-text" placeholder="Dropoff Location"><br><br>
              
-              <button class="submit-btn" type="submit">Search
+              <button class="submit-btn" type="button">Search
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path>
+                    <path fill="currentColor" d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"></path>
+                  </svg>
+                </div>
+              </button>       
+              
+              <!--find driver button-->
+              <button class="find_driver_btn" type="submit">Find Driver
                 <div class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path>
                     <path fill="currentColor" d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"></path>
                   </svg>
                 </div>
               </button>
-             
-             
           </form>
-        </div>
+        </div>   
+
+        <dialog class="loadermodal" id="loadermodal">
+          <div class="loader">
+           <div class="loader1">
+            <p>loading</p>
+            <div class="words">
+                <span class="word">pickup location</span>
+                <span class="word">pickup location</span>
+                <span class="word">estimate fare</span>
+                <span class="word">drop location</span>
+                <span class="word">driver details</span>
+                
+            </div>
+           </div>
+            <div class="loader2">
+              <div class="wrapper">
+                <div class="circle"></div>
+                <div class="line-1"></div>
+                <div class="line-2"></div>
+                <div class="line-3"></div>
+                <div class="line-4"></div>
+              </div>
+            </div>
+          </div>
+        </dialog>
           
         <div class="rightsec">
            <div class="map"></div>
            <div class="dispResult"></div> <!-- displays distance and time of trip. -->
+
+
+            <!--socket.io-->
+           <script src="http://localhost:4000/socket.io/socket.io.js"></script>
            <script src="/js/ridenow.js"></script>
            <!-- Google maps and marker -->
            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOixmPLBhxBQt_X-ZvU2NIbYnNyBAcv4o&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cAB" async defer></script>
+
+           
         </div>
           
       </div> 

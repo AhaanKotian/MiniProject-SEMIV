@@ -177,3 +177,260 @@ box-shadow:  6px 6px 23px #c4c4c4,
 }
 
 
+/*FIND DRIVER BUTTON -- EDIT LATER JUST DONT CHANGE find_driver_btn CLASS*/
+.find_driver_btn {
+  background: #feca47;
+  color: rgb(255, 255, 255);
+  font-family: 'Josefin Sans',sans-serif;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  text-align: center;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #feca47;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+  margin-top: 5em;
+}
+
+.find_driver_btn .icon {
+background: #feca47;
+color: rgb(255, 255, 255);
+font-family: 'Josefin Sans',sans-serif;
+padding: 0.35em;
+padding-left: 1.2em;
+font-size: 17px;
+font-weight: 500;
+border-radius: 0.9em;
+border: none;
+text-align: center;
+letter-spacing: 0.05em;
+display: flex;
+align-items: center;
+box-shadow: inset 0 0 1.6em -0.6em #feca47;
+overflow: hidden;
+position: relative;
+height: 2.8em;
+padding-right: 3.3em;
+}
+
+.find_driver_btn .icon {
+background: white;
+margin-left: 1em;
+position: absolute;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 2.2em;
+width: 2.2em;
+border-radius: 0.7em;
+box-shadow: 0.1em 0.1em 0.6em 0.2em #feca47;
+right: 0.3em;
+transition: all 0.3s;
+}
+
+.find_driver_btn:hover .icon {
+width: calc(100% - 0.6em);
+}
+
+.find_driver_btn .icon svg {
+width: 1.1em;
+transition: transform 0.3s;
+color: #feca47;
+}
+
+.find_driver_btn:hover .icon svg {
+transform: translateX(0.1em);
+}
+
+.find_driver_btn:active .icon {
+transform: scale(0.95);
+}
+
+
+/*RIDE NOW LOAD MODAL*/
+.loader1 {
+  color: rgb(124, 124, 124);
+  font-family: "Poppins",sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 40px;
+  padding: 10px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 8px;
+}
+
+.words {
+  overflow: hidden;
+}
+
+.word {
+  display: block;
+  height: 100%;
+  padding-left: 6px;
+  color: #feca47;
+  animation: spin_4991 8s infinite;
+}
+
+@keyframes spin_4991 {
+  10% {
+    -webkit-transform: translateY(-105%);
+    transform: translateY(-105%);
+  }
+
+  25% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+
+  35% {
+    -webkit-transform: translateY(-205%);
+    transform: translateY(-205%);
+  }
+
+  50% {
+    -webkit-transform: translateY(-200%);
+    transform: translateY(-200%);
+  }
+
+  60% {
+    -webkit-transform: translateY(-305%);
+    transform: translateY(-305%);
+  }
+
+  75% {
+    -webkit-transform: translateY(-300%);
+    transform: translateY(-300%);
+  }
+
+  85% {
+    -webkit-transform: translateY(-405%);
+    transform: translateY(-405%);
+  }
+
+  100% {
+    -webkit-transform: translateY(-400%);
+    transform: translateY(-400%);
+  }
+}
+
+.loader2 {
+  position: relative;
+  width: 240px;
+  height: 130px;
+  margin-bottom: 10px;
+  border: 1px solid #d3d3d3;
+  padding: 15px;
+  background-color: #e3e3e3;
+  overflow: hidden;
+}
+
+.loader2:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(110deg, rgba(227, 227, 227, 0) 0%, rgba(227, 227, 227, 0) 40%, rgba(227, 227, 227, 0.5) 50%, rgba(227, 227, 227, 0) 60%, rgba(227, 227, 227, 0) 100%);
+  animation: gradient-animation_2 1.2s linear infinite;
+}
+
+.loader2 .wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.loader2 .wrapper > div {
+  background-color: #cacaca;
+}
+
+.loader2 .circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.loader2 .button {
+  display: inline-block;
+  height: 32px;
+  width: 75px;
+}
+
+.loader2 .line-1 {
+  position: absolute;
+  top: 11px;
+  left: 58px;
+  height: 10px;
+  width: 100px;
+}
+
+.loader2 .line-2 {
+  position: absolute;
+  top: 34px;
+  left: 58px;
+  height: 10px;
+  width: 150px;
+}
+
+.loader2 .line-3 {
+  position: absolute;
+  top: 57px;
+  left: 0px;
+  height: 10px;
+  width: 100%;
+}
+
+.loader2 .line-4 {
+  position: absolute;
+  top: 80px;
+  left: 0px;
+  height: 10px;
+  width: 92%;
+}
+
+@keyframes gradient-animation_2 {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+dialog{ 
+  position: fixed;
+  height: 300px;
+  width: 400px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50px;
+  background-color: #fff;
+  box-shadow:  20px 20px 60px #c6c9b9,
+           -20px -20px 60px #fffffb;
+  border: none;
+  
+}
+
+.loadermodal::backdrop{
+  filter: blur(100px);
+  background:#27241b;
+  opacity: .3;
+  
+}
+
+

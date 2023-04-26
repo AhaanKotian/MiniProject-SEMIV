@@ -1,0 +1,1 @@
+1) change socket script url in ridenow.ejs

@@ -3,6 +3,7 @@ let map;
 let markers = [];
 let directionRenderers = [];
 const center = { lat: 19.0760, lng: 72.877 };
+const socket = io();  
 
 function initMap(){
   let autocomplete = autofill();
@@ -22,11 +23,11 @@ function initMap(){
       findOnMap(map,query);
     });
 
-  form.addEventListener('submit', (e)=> 
-    {
-      e.preventDefault();
-      return direction(map)
-    });
+  // document.querySelector('.submit-btn').addEventListener('click', (e)=> 
+  //   {
+  //     e.preventDefault();
+  //     return direction(map)
+  //   });
 
 }
 
@@ -164,19 +165,30 @@ function distMatrix(origin, destination){
 
 const loadermodal = document.querySelector( '#loadermodal' );
 const searchbtn = document.querySelector('.submit-btn');
+const putext = document.querySelector('#pu-text');
+const ridermodal = document.getElementById('riderdetails');
 
-searchbtn.addEventListener('click',(e) => {
+
+form.addEventListener('submit',(e) => {
+  e.preventDefault();
+
+  if(putext.value)
+  {    
     loadermodal.showModal();
-})
+    socket.emit('join', 'driverroom');
+    socket.on("passenger details", (msg) => {
+        loadermodal.close();
+        ridermodal.showModal();
 
-if(document.getElementById('rnsi'))
-{
-  document.getElementById('rnsi').addEventListener('click',(e) => {
-    loadermodal.showModal();
-  })
-}
+        let rider1 = Object.values(Object.values(msg)[0])[0];
+        document.querySelector('.rider-name').innerHTML = rider1.name;
+        document.querySelector('.pickup-location').innerHTML = rider1.pickup;
+    });
+  }
+}); 
 
-setTimeout(function() { loadermodal.close();}, 15000);
+
+//setTimeout(function() { loadermodal.close();}, 15000);
 
 //riderdetails.showModal();
 

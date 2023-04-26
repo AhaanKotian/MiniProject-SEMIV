@@ -24,7 +24,7 @@
            <form class="address-form">
              <a class="title">Find a Ride!</a>
              
-             <input class="input" id="pu-text" placeholder="Pickup Location"><br><br>
+             <input class="input" id="pu-text" placeholder="Current Location"><br><br>
               <button class="submit-btn" type="submit">Search
                 <div class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path>
@@ -63,7 +63,7 @@
           </div>
         </dialog>
 
-         <!--<dialog class="riderdetails" id="riderdetails">
+         <dialog class="riderdetails" id="riderdetails">
           <div class="deetscontainer">
             <div class="deetsheading">Available Rides</div>
             <div class="rides">
@@ -74,7 +74,7 @@
                   <div class="trip-details">
                     <h3 class="rider-name">Smit Malde</h3>
                     <p class="pickup-location">Pickup: 123 Main St, City, State ZIP</p>
-                    <p class="car-details">+91 1234567890</p>
+                    <!--<p class="car-details">+91 1234567890</p>-->
                     <p class="trip-time">April 25, 2023 at 2:30 PM</p>
                     <p class="trip-amount">Rs 450.50</p>
                   </div>
@@ -85,7 +85,7 @@
                     </button>
               </div>
             </div>
-             <div class="ride2">
+             <!-- <div class="ride2">
               <div class="trip-card">
                 <div class="row1">
                   <img src="https://via.placeholder.com/80" alt="Rider Profile Picture" class="rider-avatar">
@@ -105,12 +105,12 @@
               </div>
 
              </div>
-             <div class="ride3">
+             <div class="ride3"> -->
 
              </div>
             </div>
           </div>
-        </dialog>-->
+        </dialog>
         
        
 
@@ -118,6 +118,9 @@
         <div class="rightsec">
            <div class="map"></div>
            <div class="dispResult"></div> <!-- displays distance and time of trip. -->
+
+          <!--socket.io script-->
+           <script src="http://localhost:4000/socket.io/socket.io.js"></script>
            <script src="/js/drivenow.js"></script>
            <!-- Google maps and marker -->
            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOixmPLBhxBQt_X-ZvU2NIbYnNyBAcv4o&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cAB" async defer></script>

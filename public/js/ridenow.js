@@ -1,8 +1,10 @@
 const form = document.querySelector('.address-form');
+const search = document.querySelector('.submit-btn');
 let map;
 let markers = [];
 let directionRenderers = [];
 const center = { lat: 19.0760, lng: 72.877 };
+const socket = io();  
 
 function initMap(){
   let autocomplete = autofill();
@@ -22,7 +24,7 @@ function initMap(){
       findOnMap(map,query);
     });
 
-  form.addEventListener('submit', (e)=> 
+  search.addEventListener('click', (e)=> 
     {
       e.preventDefault();
       return direction(map)
@@ -161,3 +163,25 @@ function distMatrix(origin, destination){
       }
     });
 }
+
+
+
+//socket.io
+const driver_btn = document.querySelector('.find_driver_btn');
+const loadmodal = document.querySelector('.loadermodal');
+const putext = document.querySelector('#pu-text');
+const dtext = document.querySelector('#d-text');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  if(putext.value && dtext.value)
+  {
+    loadmodal.showModal();
+    let locationDetails = {putext: putext.value, dtext: dtext.value};
+    socket.emit("ride requested", locationDetails);
+    putext.value = '';
+    dtext.value = '';
+  }
+
+});
