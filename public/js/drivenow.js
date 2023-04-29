@@ -163,32 +163,26 @@ function distMatrix(origin, destination){
     });
 }
 
-const loadermodal = document.querySelector( '#loadermodal' );
-const searchbtn = document.querySelector('.submit-btn');
-const putext = document.querySelector('#pu-text');
-const ridermodal = document.getElementById('riderdetails');
+
+var loaderModal = document.getElementById("loadermodal");
+var riderDetailsModal = document.getElementById("riderdetails");
+var findButton = document.getElementById("submit-btn");
 
 
-form.addEventListener('submit',(e) => {
-  e.preventDefault();
+findButton.addEventListener("click", function() {
+  
 
-  if(putext.value)
-  {    
-    loadermodal.showModal();
-    socket.emit('join', 'driverroom');
-    socket.on("passenger details", (msg) => {
-        loadermodal.close();
-        ridermodal.showModal();
+  loaderModal.style.display = "block";
+  riderDetailsModal.style.display = "none";
 
-        let rider1 = Object.values(Object.values(msg)[0])[0];
-        document.querySelector('.rider-name').innerHTML = rider1.name;
-        document.querySelector('.pickup-location').innerHTML = rider1.pickup;
-    });
-  }
-}); 
+  setTimeout(function() {
+   
+    loaderModal.style.display = "none";
+    riderDetailsModal.style.display = "block";
+  }, 10000); 
+});
 
 
-//setTimeout(function() { loadermodal.close();}, 15000);
 
-//riderdetails.showModal();
+
 

@@ -331,12 +331,13 @@ box-shadow:  6px 6px 23px #c4c4c4,
   }
 }
 
-dialog{ 
+.modal { 
   position: fixed;
   height: 300px;
   width: 400px;
   top: 50%;
   left: 50%;
+  display: none;
   transform: translate(-50%, -50%);
   border-radius: 50px;
   background-color: #fff;
@@ -346,14 +347,14 @@ dialog{
   
 }
 
-.loadermodal::backdrop{
+#loadermodal::backdrop{
   filter: blur(100px);
   background:#27241b;
   opacity: .3;
   
 }
 
-.riderdetails::backdrop{
+#riderdetails::backdrop{
   filter: blur(100px);
   background:#27241b;
   opacity: .3;
@@ -376,7 +377,7 @@ display: none;
   font-family: "Josefin Sans", sans-serif;
 }
 
-.riderdetails {
+#riderdetails {
   width: 400px;
   height: fit-content;
   display: flex;
