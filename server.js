@@ -73,17 +73,26 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log("A user disconnected");
 
-    for(let i=0; i<passengerList.length; i++)
-    {
-      if(passengerList[i].id == socket.request.user.id)
+    try{
+      for(let i=0; i<passengerList.length; i++)
       {
-        passengerList.splice(i, 1);
-        io.emit('passenger details', {passengerList});
-        break;
+        if(passengerList[i].id == socket.request.user.id)
+        {
+          passengerList.splice(i, 1);
+          io.emit('passenger details', {passengerList});
+          break;
+        }
       }
     }
+    catch(err){
+      console.log("nothing to see here");
+    }
   })
-  
+
+  //driver available
+  socket.on('driver available', () => {
+    io.emit('driver available');
+  })
 
 });
 

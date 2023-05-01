@@ -169,12 +169,19 @@ var riderDetailsModal = document.getElementById("riderdetails");
 var findButton = document.getElementById("submit-btn");
 
 riderDetailsModal.style.display = "none";
+loaderModal.style.display = "none";
 let riderModalFlag = 1;
+
+let disconnectFlag = 0;
 
 findButton.addEventListener("click", function(e) {  
 
   e.preventDefault();
   loaderModal.style.display = "block";
+
+  setInterval( () => socket.emit('driver available'), 1000);
+
+  disconnectFlag = 1;
 
   socket.on('passenger details', (passengerList) => {
 
@@ -241,6 +248,12 @@ findButton.addEventListener("click", function(e) {
 
   });
 });
+
+// if(loaderModal.style.display == "none" && riderDetailsModal.style.display == "none")
+// {
+//   console.log("in loadmodal none");
+//   socket.emit('driver unavailable');
+// }
 
 
 

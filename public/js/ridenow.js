@@ -242,6 +242,7 @@ function afterSubmit(user){
       });
     }
     
+    //if driver accepts
     socket.on("driver details", (msg) => {
       rideId = Object.values(msg)[0];
       riderId = Object.values(msg)[1];
@@ -254,5 +255,24 @@ function afterSubmit(user){
         console.log("Driver Found!");
       }
     })
+
+    //if no driver available
+    // socket.on('driver unavailable', () => {
+    //   document.querySelector('.unavailable').innerHTML = 'Driver unavailable :(';
+    //   loadmodal.close()
+    // })
+
+    const requestTimer = setTimeout(() => {
+      // Perform an action if no driver has accepted the ride within the timeout period
+      document.querySelector('.unavailable').innerHTML = 'No drivers connected :(';
+      loadmodal.close();
+    }, 5000);
+
+    socket.on('driver available', () => {
+      document.querySelector('.unavailable').innerHTML = '';
+      loadmodal.showModal();
+      clearTimeout(requestTimer);
+    })
+
   });
 }
