@@ -254,6 +254,12 @@ function afterSubmit(user){
         loadmodal.close();
         console.log("Driver Found!");
       }
+
+      //redirect to new url
+      const currentUrl = window.location.href;
+      const baseUrl = currentUrl.replace(/\/[^\/]*$/, '');
+      const newUrl = `${baseUrl}/driverfound`;
+      window.location.href = newUrl;
     })
 
     //if no driver available

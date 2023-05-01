@@ -230,6 +230,12 @@ findButton.addEventListener("click", function(e) {
                 riderModalFlag = 0;
                 console.log("ride accepted"); 
                 riderDetailsModal.style.display = "none";
+
+                //redirect to new url
+                const currentUrl = window.location.href;
+                const baseUrl = currentUrl.replace(/\/[^\/]*$/, '');
+                const newUrl = `${baseUrl}/riderfound`;
+                window.location.href = newUrl;
             });
         
       }

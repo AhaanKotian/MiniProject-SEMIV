@@ -66,6 +66,7 @@ io.on('connection', (socket) => {
 
     io.emit("driver details", {rideId, riderId});
     io.emit('passenger details', {passengerList});
+
   });
 
 

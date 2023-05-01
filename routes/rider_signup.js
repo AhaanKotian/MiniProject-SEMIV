@@ -44,4 +44,7 @@ router.get('/logout', (req, res, next) => {
     res.render('ridenow', {user});
   });
 
+//after driver accepts ride
+router.get('/driverfound', (req, res) => res.render('driverfound'));
+
 module.exports = router;

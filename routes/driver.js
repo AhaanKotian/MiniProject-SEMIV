@@ -39,8 +39,11 @@ router.get('/logout', (req, res, next) => {
   });
 
 
-    //drivenow if user is logged in
-    router.get('/drivenow', (req , res) => res.render('drivenow'));
+//drivenow if user is logged in
+router.get('/drivenow', (req , res) => res.render('drivenow'));
+
+//after driver accepts ride
+router.get('/riderfound', (req, res) => res.render('riderfound'));
 
 
 module.exports = router;
