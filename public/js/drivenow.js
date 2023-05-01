@@ -169,6 +169,7 @@ var riderDetailsModal = document.getElementById("riderdetails");
 var findButton = document.getElementById("submit-btn");
 
 riderDetailsModal.style.display = "none";
+let riderModalFlag = 1;
 
 findButton.addEventListener("click", function(e) {  
 
@@ -179,13 +180,15 @@ findButton.addEventListener("click", function(e) {
 
     loaderModal.style.display = "none";
     pL = Object.values(passengerList)[0];
+    document.querySelector('.riderlist').innerHTML = '';
 
-    const li = document.createElement('li');
+    console.log(pL);
 
     if(pL.length > 0){
+
       for(let i = 0; i < pL.length; i++){
-        console.log(pL[i]);
-        if(pL[i].pushStatus == "No"){
+        
+          const li = document.createElement('li');
           li.innerHTML = 
             `
             <div class="ride1">
@@ -202,7 +205,7 @@ findButton.addEventListener("click", function(e) {
                         </div>
                       </div>
                     
-                      <button class="request" type="button" data-rider="${pL[i].rideId}">
+                      <button class="request" type="button" data-rideId="${pL[i].rideId}"  data-riderId="${pL[i].id}">
                               Accept Request
                           </button>
                     </div>
@@ -213,30 +216,29 @@ findButton.addEventListener("click", function(e) {
 
             const acceptBtn = li.querySelector('.request');
             acceptBtn.addEventListener('click', () => {
-                const rideId = acceptBtn.dataset.rider;
-                socket.emit('accept ride', { rideId });
-            });
+                const rideId = acceptBtn.getAttribute('data-rideId');
+                const riderId = acceptBtn.getAttribute('data-riderId');
 
-        }
+                socket.emit('accept ride', { rideId, riderId });
+                riderModalFlag = 0;
+                console.log("ride accepted"); 
+                riderDetailsModal.style.display = "none";
+            });
         
       }
 
-      socket.emit("push status", {pL});
-      riderDetailsModal.style.display = "block";
+      if(riderModalFlag)
+        riderDetailsModal.style.display = "block";
+      else
+        riderDetailsModal.style.display = "none";
+    }
+    else
+    {
+      loaderModal.style.display = "block";
     }
     
 
-
-    // document.getElementById("rider-name").innerHTML = pL[0].name;
-    // document.getElementById("pickup-location").innerHTML = pL[0].pickup;
-    // document.getElementById("drop-location").innerHTML = pL[0].dropoff;
-
   });
-
-  // setTimeout(function() {   
-  //   loaderModal.style.display = "none";
-  //   riderDetailsModal.style.display = "block";
-  // }, 10000); 
 });
 
 

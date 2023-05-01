@@ -190,6 +190,22 @@ function afterSubmit(user){
       putext.value = '';
       dtext.value = '';
     }
+    
+    socket.on("driver details", (msg) => {
+      rideId = Object.values(msg)[0];
+      riderId = Object.values(msg)[1];
+      
+      console.log(msg);
+
+      if(riderId == user.id)
+      {
+        loadmodal.close();
+        console.log("Driver Found!");
+      }
+    })
+
 
   });
+
+
 }

@@ -52,18 +52,35 @@ io.on('connection', (socket) => {
   })
 
   //rider details are pushed to driver
-  socket.on('push status', (msg) => {
-    pL = Object.values(msg)[0];
-    for(let i = 0; i < pL.length; i++)
+  // socket.on('push status', (msg) => {
+  //   pL = Object.values(msg)[0];
+  //   for(let i = 0; i < pL.length; i++)
+  //   {
+  //     for(let j = 0; j < passengerList.length; j++)
+  //     {
+  //       if(pL[i].rideId == passengerList[j].rideId)
+  //       {
+  //         passengerList[j].pushStatus = "Yes";
+  //       }
+  //     }
+  //   }
+  // });
+
+  //driver accepts ride
+  socket.on('accept ride', (msg) => {
+    rideId = Object.values(msg)[0];
+    riderId = Object.values(msg)[1];
+    
+    for(let i = 0; i < passengerList.length; i++)
     {
-      for(let j = 0; j < passengerList.length; j++)
+      if(passengerList[i].rideId == rideId)
       {
-        if(pL[i].rideId == passengerList[j].rideId)
-        {
-          passengerList[j].pushStatus = "Yes";
-        }
+        passengerList.splice(i, 1);
       }
     }
+
+    io.emit("driver details", {rideId, riderId});
+    io.emit('passenger details', {passengerList});
   });
 
 });
