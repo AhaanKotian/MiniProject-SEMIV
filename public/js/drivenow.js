@@ -187,7 +187,7 @@ findButton.addEventListener("click", function(e) {
     if(pL.length > 0){
 
       for(let i = 0; i < pL.length; i++){
-        
+
           const li = document.createElement('li');
           li.innerHTML = 
             `
@@ -201,7 +201,7 @@ findButton.addEventListener("click", function(e) {
                           <p>Pickup Location: <span id="pickup-location">${pL[i].pickup}</span></p>
                           <p>Drop Location: <span id="drop-location">${pL[i].dropoff}</span></p>                    
                           <p class="trip-time">April 25, 2023 at 2:30 PM</p>
-                          <p class="trip-amount">Rs 450.50</p>
+                          <p class="trip-amount">Rs ${pL[i].fare}</p>
                         </div>
                       </div>
                     
@@ -235,6 +235,7 @@ findButton.addEventListener("click", function(e) {
     else
     {
       loaderModal.style.display = "block";
+      riderDetailsModal.style.display = "none";
     }
     
 

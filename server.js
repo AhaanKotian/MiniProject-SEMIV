@@ -22,10 +22,10 @@ app.use(flash());
 app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
-// const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
-// io.use(wrap(sessionMiddleware));
-// io.use(wrap(passport.initialize()));
-// io.use(wrap(passport.session()));
+const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
+io.use(wrap(sessionMiddleware));
+io.use(wrap(passport.initialize()));
+io.use(wrap(passport.session()));
 
 
 //routes
@@ -51,21 +51,6 @@ io.on('connection', (socket) => {
     console.log("Passenger List", passengerList);    
   })
 
-  //rider details are pushed to driver
-  // socket.on('push status', (msg) => {
-  //   pL = Object.values(msg)[0];
-  //   for(let i = 0; i < pL.length; i++)
-  //   {
-  //     for(let j = 0; j < passengerList.length; j++)
-  //     {
-  //       if(pL[i].rideId == passengerList[j].rideId)
-  //       {
-  //         passengerList[j].pushStatus = "Yes";
-  //       }
-  //     }
-  //   }
-  // });
-
   //driver accepts ride
   socket.on('accept ride', (msg) => {
     rideId = Object.values(msg)[0];
@@ -82,6 +67,23 @@ io.on('connection', (socket) => {
     io.emit("driver details", {rideId, riderId});
     io.emit('passenger details', {passengerList});
   });
+
+
+  //rider disconnects or reloads
+  socket.on('disconnect', () => {
+    console.log("A user disconnected");
+
+    for(let i=0; i<passengerList.length; i++)
+    {
+      if(passengerList[i].id == socket.request.user.id)
+      {
+        passengerList.splice(i, 1);
+        io.emit('passenger details', {passengerList});
+        break;
+      }
+    }
+  })
+  
 
 });
 

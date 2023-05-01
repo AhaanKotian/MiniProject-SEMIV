@@ -5,9 +5,12 @@ let markers = [];
 let directionRenderers = [];
 const center = { lat: 19.0760, lng: 72.877 };
 const socket = io();  
+let flag = 0;
+
 
 function initMap(){
-  let autocomplete = autofill();
+  let autocomplete1 = autofill1();
+  let autocomplete2 = autofill2();
 
   let query;
   var options = {
@@ -19,22 +22,35 @@ function initMap(){
   };
   map = new google.maps.Map(document.querySelector('.map'), options);
 
-  autocomplete.addListener('place_changed', ()=>{
+  autocomplete1.addListener('place_changed', ()=>{
       query = document.querySelector('#pu-text').value;
       findOnMap(map,query);
+      flag++;
+
+      if(flag >= 2)
+        direction(map);      
     });
 
-  search.addEventListener('click', (e)=> 
-    {
-      e.preventDefault();
-      return direction(map)
-    });
+  // search.addEventListener('click', (e)=> 
+  //   {
+  //     e.preventDefault();
+  //     return direction(map)
+  //   });
+
+  autocomplete2.addListener('place_changed', ()=>{
+    query = document.querySelector('#d-text').value;
+    findOnMap(map,query);
+    flag++;
+    
+    if(flag >= 2)
+      direction(map);
+  });
 
 }
 
 //autofill and search places
-function autofill(){
-  // Create a bounding box with sides ~20km away from the center point
+//for pickup text
+function autofill1(){
   const defaultBounds = {
     south: center.lat - 0.2,
     north: center.lat + 0.2,
@@ -43,7 +59,7 @@ function autofill(){
   };
 
   const input1 = document.querySelector("#pu-text");
-  const input2 = document.querySelector("#d-text");
+  //const input2 = document.querySelector("#d-text");
   const options = {
     bounds: defaultBounds,
     componentRestrictions: { country: "in" },
@@ -51,9 +67,32 @@ function autofill(){
     strictBounds: false,
   };
   const autocomplete1 = new google.maps.places.Autocomplete(input1, options);
-  const autocomplete2 = new google.maps.places.Autocomplete(input2, options);
+  //const autocomplete2 = new google.maps.places.Autocomplete(input2, options);
 
   return autocomplete1;
+}
+
+//for drop off text
+function autofill2(){
+  const defaultBounds = {
+    south: center.lat - 0.2,
+    north: center.lat + 0.2,
+    east: center.lng + 0.2,
+    west: center.lng - 0.2,
+  };
+
+  //const input1 = document.querySelector("#pu-text");
+  const input2 = document.querySelector("#d-text");
+  const options = {
+    bounds: defaultBounds,
+    componentRestrictions: { country: "in" },
+    fields: ["address_components", "geometry", "icon", "name"],
+    strictBounds: false,
+  };
+  //const autocomplete1 = new google.maps.places.Autocomplete(input1, options);
+  const autocomplete2 = new google.maps.places.Autocomplete(input2, options);
+
+  return autocomplete2;
 }
 
 function findOnMap(map, query){
@@ -101,7 +140,6 @@ function direction(map){
     directionRenderers[0].setMap(null);
     directionRenderers=[];
   }
-  console.log("direction enter");
   var directionsService = new google.maps.DirectionsService();
   var directionsRenderer = new google.maps.DirectionsRenderer();
   directionsRenderer.setMap(map);
@@ -125,6 +163,9 @@ function calcRoute(directionsService, directionsRenderer) {
     }
   });
 }
+
+//variable for fare
+let rideDist = 0;
 
 function distMatrix(origin, destination){
   var origin1 = origin;
@@ -160,10 +201,12 @@ function distMatrix(origin, destination){
         const dispResult = document.querySelector(".dispResult");
         dispResult.innerHTML = "Total Distance: " + distance + "<br>" +
                                 "Duration: " + duration;
+
+        //getting distance                        
+        rideDist = parseFloat(distance.match(/[\d\.]+/));
       }
     });
 }
-
 
 
 //socket.io
@@ -179,16 +222,24 @@ function afterSubmit(user){
     if(putext.value && dtext.value)
     {
       loadmodal.showModal();
-      
+      console.log(rideDist);
       let passengerDetails = {
         id: user.id,  
         name: user.name,
         pickup: putext.value, 
-        dropoff: dtext.value};
+        dropoff: dtext.value,
+        fare: rideDist*10
+      };
 
       socket.emit("ride requested", passengerDetails);
       putext.value = '';
       dtext.value = '';
+
+      //if rider reloads or exits page
+      window.addEventListener('beforeunload', () => {
+        socket.emit('rider reload', {id: user.id});
+        console.log("reloaded");
+      });
     }
     
     socket.on("driver details", (msg) => {
@@ -203,9 +254,5 @@ function afterSubmit(user){
         console.log("Driver Found!");
       }
     })
-
-
   });
-
-
 }
