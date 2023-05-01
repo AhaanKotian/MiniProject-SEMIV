@@ -168,18 +168,75 @@ var loaderModal = document.getElementById("loadermodal");
 var riderDetailsModal = document.getElementById("riderdetails");
 var findButton = document.getElementById("submit-btn");
 
+riderDetailsModal.style.display = "none";
 
-findButton.addEventListener("click", function() {
-  
+findButton.addEventListener("click", function(e) {  
 
+  e.preventDefault();
   loaderModal.style.display = "block";
-  riderDetailsModal.style.display = "none";
 
-  setTimeout(function() {
-   
+  socket.on('passenger details', (passengerList) => {
+
     loaderModal.style.display = "none";
-    riderDetailsModal.style.display = "block";
-  }, 10000); 
+    pL = Object.values(passengerList)[0];
+
+    const li = document.createElement('li');
+
+    if(pL.length > 0){
+      for(let i = 0; i < pL.length; i++){
+        console.log(pL[i]);
+        if(pL[i].pushStatus == "No"){
+          li.innerHTML = 
+            `
+            <div class="ride1">
+                    <div class="trip-card">
+                      <div class="row1">
+                        <img src="https://via.placeholder.com/80" alt="Rider Profile Picture" class="rider-avatar">
+                        <div class="trip-details">
+                          <h3>Name: <span id="rider-name">${pL[i].name}</span></h3>
+                          <!-- <p>Phone: <span id="rider-phone">1234567890</span></p> -->
+                          <p>Pickup Location: <span id="pickup-location">${pL[i].pickup}</span></p>
+                          <p>Drop Location: <span id="drop-location">${pL[i].dropoff}</span></p>                    
+                          <p class="trip-time">April 25, 2023 at 2:30 PM</p>
+                          <p class="trip-amount">Rs 450.50</p>
+                        </div>
+                      </div>
+                    
+                      <button class="request" type="button" data-rider="${pL[i].rideId}">
+                              Accept Request
+                          </button>
+                    </div>
+                    </div>
+              `;
+
+            document.querySelector('.riderlist').appendChild(li);
+
+            const acceptBtn = li.querySelector('.request');
+            acceptBtn.addEventListener('click', () => {
+                const rideId = acceptBtn.dataset.rider;
+                socket.emit('accept ride', { rideId });
+            });
+
+        }
+        
+      }
+
+      socket.emit("push status", {pL});
+      riderDetailsModal.style.display = "block";
+    }
+    
+
+
+    // document.getElementById("rider-name").innerHTML = pL[0].name;
+    // document.getElementById("pickup-location").innerHTML = pL[0].pickup;
+    // document.getElementById("drop-location").innerHTML = pL[0].dropoff;
+
+  });
+
+  // setTimeout(function() {   
+  //   loaderModal.style.display = "none";
+  //   riderDetailsModal.style.display = "block";
+  // }, 10000); 
 });
 
 

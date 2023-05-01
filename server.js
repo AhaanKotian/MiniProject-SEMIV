@@ -22,10 +22,10 @@ app.use(flash());
 app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
-const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
-io.use(wrap(sessionMiddleware));
-io.use(wrap(passport.initialize()));
-io.use(wrap(passport.session()));
+// const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
+// io.use(wrap(sessionMiddleware));
+// io.use(wrap(passport.initialize()));
+// io.use(wrap(passport.session()));
 
 
 //routes
@@ -36,25 +36,40 @@ app.use('/drivers', require('./routes/driver') );
 app.get('/', (req , res) => res.render('homepage.ejs'));
 //app.get('/riders/ridenow', (req, res) => console.log(req.session.passport.user));
 
-//socket
-let passengerList = [];
+//---SOCKET STUFF BEGINS---
+const passengerList = [];
+let k12 = 0;
+
 io.on('connection', (socket) => {
   console.log('a user connected');
-
+  
   //rider clicks find driver
   socket.on('ride requested', (msg) => {
-    let passenger = {
-        id: socket.request.user.id, 
-        name: socket.request.user.name,
-        pickup: msg.putext,
-        dropoff: msg.dtext
-      }
-    passengerList.push(passenger);
-    
-    io.emit("passenger details", {passengerList});
+    msg.pushStatus = "No";
+    msg.rideId = ++k12;
+    passengerList.push(msg);
+    console.log("Passenger List", passengerList);    
   })
+
+  //rider details are pushed to driver
+  socket.on('push status', (msg) => {
+    pL = Object.values(msg)[0];
+    for(let i = 0; i < pL.length; i++)
+    {
+      for(let j = 0; j < passengerList.length; j++)
+      {
+        if(pL[i].rideId == passengerList[j].rideId)
+        {
+          passengerList[j].pushStatus = "Yes";
+        }
+      }
+    }
+  });
+
 });
 
+//emit passenger details
+setInterval( () => io.emit('passenger details', {passengerList}), 6000);
 
 
 server.listen(PORT, () => {

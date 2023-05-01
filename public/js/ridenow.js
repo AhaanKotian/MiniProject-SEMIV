@@ -172,16 +172,24 @@ const loadmodal = document.querySelector('.loadermodal');
 const putext = document.querySelector('#pu-text');
 const dtext = document.querySelector('#d-text');
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
+function afterSubmit(user){
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    if(putext.value && dtext.value)
+    {
+      loadmodal.showModal();
+      
+      let passengerDetails = {
+        id: user.id,  
+        name: user.name,
+        pickup: putext.value, 
+        dropoff: dtext.value};
 
-  if(putext.value && dtext.value)
-  {
-    loadmodal.showModal();
-    let locationDetails = {putext: putext.value, dtext: dtext.value};
-    socket.emit("ride requested", locationDetails);
-    putext.value = '';
-    dtext.value = '';
-  }
+      socket.emit("ride requested", passengerDetails);
+      putext.value = '';
+      dtext.value = '';
+    }
 
-});
+  });
+}

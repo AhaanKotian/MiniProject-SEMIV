@@ -38,6 +38,10 @@ router.get('/logout', (req, res, next) => {
 
 
   //ridenow if user is logged in
-  router.get('/ridenow', (req , res) => res.render('ridenow'));
+  router.get('/ridenow', (req , res) => {
+    const user = req.user;
+    console.log(user);  
+    res.render('ridenow', {user});
+  });
 
 module.exports = router;
