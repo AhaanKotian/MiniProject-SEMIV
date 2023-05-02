@@ -33,7 +33,7 @@ app.use('/riders', require('./routes/rider_signup'));
 app.use('/drivers', require('./routes/driver') );
 
 //hardcoded routes
-app.get('/', (req , res) => res.render('aboutus.ejs'));
+app.get('/', (req , res) => res.render('riderfound.ejs'));
 //app.get('/riders/ridenow', (req, res) => console.log(req.session.passport.user));
 
 //---SOCKET STUFF BEGINS---

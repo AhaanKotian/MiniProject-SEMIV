@@ -368,9 +368,7 @@ box-shadow:  6px 6px 23px #c4c4c4,
   
 }
 
-.modal::-webkit-scrollbar {
-display: none;
-}
+
 
 .loader {
   width: 400px;
@@ -386,7 +384,7 @@ display: none;
 
 #riderdetails {
   width: 400px;
-  height: fit-content;
+  height: 450px;
   display: flex;
   flex-direction: column;
   align-items: center;
