@@ -1,3 +1,85 @@
-<!--  THIS IS WEHRE ***RIDER*** IS REDIRECTED, NOT DRIVER-->
+<!--If having trouble with styling due to improper tags or something like that, lmk-->
 
-<p>Great success!</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Map</title>
+    <link rel="stylesheet" type="text/css" href="/css/driverfound.css">
+  </head>
+  <body>
+    <header>
+      <div class="logo">Libér</div>
+      <nav>
+                <ul class="navlinks">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Our Policy</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+       </nav>
+    </header>
+
+    <div class="container">
+     <div class="sections">
+        <div class="leftsec">
+            <div class="ridedeets">
+                <div class="sec1">
+                    <p>Meet at the pickup point</p>
+                    <button class="timebtn">6 mins</button>
+                </div>
+
+                <div class="sec2">
+                    <div class="icon">icon</div>
+                    <div class="driverdeets">
+                        <p class="l1">Mohak Khetan</p>
+                        <p class="l2">MHO4CJ5656</p>
+                        <p class="l3">Maruti Suzuki Wagon R</p>
+                    </div>
+                </div>
+
+                <div class="sec3">
+                    <div class="pu1">
+                        <div class="icon">icon</div>
+                        <div class="pu">
+                            <p class="l1">KJ Somaiya College of Engineering</p>
+                            <p class="l2">xyz xyz xyz xyz address</p>
+                        </div>
+                    </div>
+                    <div class="do1">
+                        <div class="icon">icon
+                        </div>
+                        <div class="do">
+                            <p class="l1">Mittal Park 2</p>
+                            <p class="l2">xyz xyz xyz xyz address</p>
+                        </div>
+                    </div>
+                    <div class="pay1">
+                        <div class="icon">icon
+                        </div>
+                        <div class="pay">
+                            <p class="l1">Rs. 370</p>
+                            <p class="l2">Cash</p>
+                        </div>
+                    </div>
+                    <div class="cancel">
+                        <!--Cancel Button-->
+                    </div>
+                </div>
+            </div>
+        </div>
+          
+        <div class="rightsec">
+           <div class="map"></div>
+           <div class="dispResult"></div> <!--displays distance and time of trip. -->
+
+
+            <!--socket.io-->
+           <script src="http://localhost:4000/socket.io/socket.io.js"></script>
+           <script src="/js/driverfound.js"></script>
+
+           
+           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOixmPLBhxBQt_X-ZvU2NIbYnNyBAcv4o&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cAB" async defer></script>
+        </div>
+     </div>
+    </div>
+  </body>
+</html>

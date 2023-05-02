@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;700&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing:border-box ;
+  font-family: 'Josefin Sans',sans-serif;
+  
+}
+
+
+
+.navlinks{
+  list-style: none;
+}
+
+.navlinks li{
+  display: inline-block;
+  padding: 0px 50px;
+}
+
+.navlinks li a{
+  text-decoration: none;
+  color: black;
+  transition: all 0s ease 0.2s;
+}
+
+.navlinks li a:hover{
+  color: #feca47;
+}
+
+body{
+  overflow-y: scroll;
+  overflow-x: hidden; 
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.map{
+  height: 400px;
+  width: 700px;
+  box-sizing: border-box;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  }
+  
+  .pu-text{
+    width: 500px;
+  }
+
+  header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 5%;
+    border-bottom: 2px 2px 2px black ;
+}
+
+.logo{
+    cursor: pointer;
+    font-family: 'Josefin Sans',sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    color: #feca47;
+    text-shadow: 1px 1px 1px #535050;
+    font-size: 48px;
+    line-height: 48px;
+}
+
+.container .sections{
+    padding-top: 5px;
+    padding-left: 40px;
+    padding-right: 40px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .leftsec{
+    max-width: 450px;
+    max-height: 500px;
+    width: 500%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+  background: #ffffff;
+  box-shadow:  6px 6px 23px #c4c4c4,
+               -6px -6px 23px #ffffff;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .leftsec .sec1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    border-bottom:black 1px solid ;
+  }
+
+  .leftsec .sec1 p{
+    font-weight: 800;
+    font-size: larger;
+    padding-bottom: 8px;
+  }
+
+  .timebtn {
+    width: 80px;
+    height: 40px;
+    text-align: center;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #171717;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 5px;
+   }
+
+   .leftsec .sec2{
+    padding-top: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    border-bottom:black 1px solid ;
+  }
+
+  .sec2 .driverdeets{
+    text-align: right;
+
+  }
+
+  .sec2 .driverdeets .l2{
+    font-size: larger;
+    font-weight: 700;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  .sec2 .driverdeets .l3{
+    padding-bottom: 5px;
+  }
+
+  .sec3 .pu1{
+    display:flex;
+    align-items: start;
+    flex-direction: row;
+    column-gap: 50px;
+    padding-top: 8px;
+  }
+
+  .sec3 .do1{
+    display:flex;
+    align-items: start;
+    flex-direction: row;
+    column-gap: 50px;
+    padding-top: 8px;
+  }
+
+  .sec3 .pay1{
+    display:flex;
+    align-items: start;
+    flex-direction: row;
+    column-gap: 50px;
+    padding-top: 8px;
+  }
